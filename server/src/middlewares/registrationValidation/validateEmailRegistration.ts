@@ -1,5 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import { myClient } from "../..";
+import { myClient } from "./registrationValidation";
 
 async function validateEmailRegistration(
   req: Request,
