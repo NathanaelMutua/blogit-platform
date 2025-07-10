@@ -9,7 +9,7 @@ app.get("/", (_req, res) => {
   res.send(`<h1>Blog Platform</h1>`);
 });
 
-app.use("/auth", authRouter);
+app.use("/api/auth", authRouter);
 
 const port = process.env.PORT || 5800;
 

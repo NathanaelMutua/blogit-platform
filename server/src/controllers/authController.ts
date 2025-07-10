@@ -4,7 +4,7 @@ import bcrypt from "bcryptjs";
 
 const myClient = new PrismaClient();
 
-const registerUser = async (req: Request, res: Response) => {
+export const registerUser = async (req: Request, res: Response) => {
   try {
     const { firstName, lastName, email, username, password, profileImage } =
       req.body;
@@ -28,5 +28,3 @@ const registerUser = async (req: Request, res: Response) => {
     res.status(500).json({ error: "An Error Occurred!" });
   }
 };
-
-export default registerUser;
