@@ -12,7 +12,6 @@ const registrationValidation = [
   validateEmailRegistration,
   validateUsernameRegistration,
   validatePassword,
-  validateProfileImage,
 ];
 
 export default registrationValidation;

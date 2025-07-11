@@ -10,8 +10,8 @@ const validatePassword = function (
 
   const result = zxcvbn(password);
 
-  if (password.length < 6) {
-    res.status(400).json({ message: "Password must be at least 7 characters" });
+  if (password.length < 5) {
+    res.status(400).json({ message: "Password must be at least 6 characters" });
   }
 
   if (result.score < 3) {
