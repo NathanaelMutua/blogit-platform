@@ -17,20 +17,16 @@ function DefaultNavbar() {
             </Typography>
           </Link>
           <Stack direction="row" spacing={2} ml="auto">
-            <Button variant="outlined">
+            <Button variant="contained" color="secondary">
               <Link
                 to="/login"
-                style={{ textDecoration: "none", color: "primary" }}
+                style={{
+                  textDecoration: "none",
+                  textTransform: "capitalize",
+                  color: "#fff",
+                }}
               >
-                Login
-              </Link>
-            </Button>
-            <Button variant="contained">
-              <Link
-                to="/register"
-                style={{ textDecoration: "none", color: "#fff" }}
-              >
-                SignUp
+                Sign-In
               </Link>
             </Button>
           </Stack>

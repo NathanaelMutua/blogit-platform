@@ -10,6 +10,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 interface User {
   firstName: string;
@@ -64,7 +65,7 @@ function SignUpForm() {
       <Box width={{ xs: 1000, sm: 1000, md: 800, lg: 500 }}>
         <Card
           sx={{
-            padding: " 1rem 3rem",
+            padding: " 2rem 3rem",
             display: "flex",
             flexDirection: "column",
             gap: "1rem",
@@ -74,7 +75,7 @@ function SignUpForm() {
           <Typography
             variant="h2"
             fontWeight="bold"
-            fontSize="1.7rem"
+            fontSize="1.6rem"
             color="primary"
           >
             Join BlogIt
@@ -169,12 +170,18 @@ function SignUpForm() {
           </Stack>
           <Button
             variant="contained"
+            color="secondary"
             onClick={handleRegistration}
             loading={isPending}
             sx={{ width: "90%" }}
           >
             Register
           </Button>
+          <Typography variant="body2" fontSize="0.9rem">
+            <Link to="/login" style={{ textDecoration: "none" }}>
+              Already have an account? SignIn
+            </Link>
+          </Typography>
         </Card>
       </Box>
     </>

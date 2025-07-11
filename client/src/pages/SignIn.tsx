@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
-import SignUpForm from "../components/SignUpForm";
+import SignInForm from "../components/SignInForm";
 
-function SignUp() {
+function SignIn() {
   return (
     <>
       <Box
@@ -11,10 +11,10 @@ function SignUp() {
         alignItems="center"
         justifyContent="center"
       >
-        <SignUpForm />
+        <SignInForm />
       </Box>
     </>
   );
 }
 
-export default SignUp;
+export default SignIn;
