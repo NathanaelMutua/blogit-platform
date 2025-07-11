@@ -11,12 +11,16 @@ const validatePassword = function (
   const result = zxcvbn(password);
 
   if (password.length < 5) {
-    res.status(400).json({ message: "Password must be at least 6 characters" });
+    res.status(400).json({
+      game_of_throws: "Password must be at least 6 characters",
+      support: "nathanael.mutus.m@gmail.com",
+    });
   }
 
   if (result.score < 3) {
     res.status(400).json({
-      message: `Weak Password! ${result.feedback.suggestions[0]}`,
+      game_of_throws: `Weak Password! ${result.feedback.suggestions[0]}`,
+      support: "nathanael.mutus.m@gmail.com",
     });
     return;
   }

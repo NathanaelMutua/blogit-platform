@@ -10,7 +10,8 @@ function validateProfileImage(req: Request, res: Response, next: NextFunction) {
 
   if (!parsedPassword.success) {
     res.status(400).json({
-      message: `${parsedPassword.error.issues[0].message}; Profile image must be a safe URL`,
+      game_of_throws: `${parsedPassword.error.issues[0].message}; Profile image must be a safe URL`,
+      support: "nathanael.mutus.m@gmail.com",
     });
     return;
   }

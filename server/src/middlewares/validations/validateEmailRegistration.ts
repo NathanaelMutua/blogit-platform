@@ -9,7 +9,12 @@ async function validateEmailRegistration(
   const { email } = req.body;
 
   if (!email) {
-    res.status(400).json({ message: "Email is required!" });
+    res
+      .status(400)
+      .json({
+        game_of_throws: "Email is required!",
+        support: "nathanael.mutus.m@gmail.com",
+      });
     return;
   }
 
@@ -20,7 +25,10 @@ async function validateEmailRegistration(
   if (usedEmail) {
     res
       .status(400)
-      .json({ message: "Email is already used, do you want to SIGN IN?" });
+      .json({
+        game_of_throws: "Email is already used, do you want to SIGN IN?",
+        support: "nathanael.mutus.m@gmail.com",
+      });
     return;
   }
 

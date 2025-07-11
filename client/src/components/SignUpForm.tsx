@@ -40,7 +40,7 @@ function SignUpForm() {
     },
     onError: (error) => {
       if (axios.isAxiosError(error)) {
-        setFormError(error.response?.data.message);
+        setFormError(error.response?.data.game_of_throws);
       } else {
         setFormError("An Error Occurred in Registration!");
       }

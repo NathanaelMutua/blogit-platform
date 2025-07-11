@@ -9,7 +9,12 @@ async function validateUsernameRegistration(
   const { username } = req.body;
 
   if (!username) {
-    res.status(400).json({ message: "Username is required!" });
+    res
+      .status(400)
+      .json({
+        game_of_throws: "Username is required!",
+        support: "nathanael.mutus.m@gmail.com",
+      });
     return;
   }
 
@@ -18,7 +23,12 @@ async function validateUsernameRegistration(
   });
 
   if (newUsername) {
-    res.status(400).json({ message: "This username is in use, pick another." });
+    res
+      .status(400)
+      .json({
+        game_of_throws: "This username is in use, pick another.",
+        support: "nathanael.mutus.m@gmail.com",
+      });
   }
 
   next();

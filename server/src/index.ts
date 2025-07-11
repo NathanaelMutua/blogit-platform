@@ -1,5 +1,5 @@
 import express, { Express, Request, Response } from "express";
-import authRouter from "./routes/auth";
+import authRouter from "./routes/auth.route";
 import cors from "cors";
 
 const app: Express = express();
