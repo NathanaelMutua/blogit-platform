@@ -1,9 +1,16 @@
 import express, { Express, Request, Response } from "express";
 import authRouter from "./routes/auth";
+import cors from "cors";
 
 const app: Express = express();
 
 app.use(express.json());
+app.use(
+  cors({
+    origin: ["http://localhost:5173"],
+    methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
+  })
+);
 
 app.get("/", (_req, res) => {
   res.send(`<h1>Blog Platform</h1>`);
