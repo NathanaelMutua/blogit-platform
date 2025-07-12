@@ -12,6 +12,8 @@ function validatePasswordLogin(
       .status(400)
       .json({ game_of_throws: "Kindly don't forget the password 👇🏽" });
   }
+
+  next();
 }
 
 export default validatePasswordLogin;
