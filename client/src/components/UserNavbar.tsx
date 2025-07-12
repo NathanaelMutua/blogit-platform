@@ -7,13 +7,25 @@ import {
   Button,
   Avatar,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import useUserStore from "../store/userStore";
+import axiosInstance from "../api/axios.instance";
+import useUser from "../store/userStore";
 
 function UserNavbar() {
   const user = useUserStore();
+  const { logoutUser } = useUser();
+  const navigate = useNavigate();
+
+  async function handleLogout() {
+    const response = await axiosInstance.post("/api/auth/logout");
+    console.log(response.data);
+    logoutUser();
+    navigate("/login");
+  }
+
   return (
     <Box component="section">
       <AppBar sx={{ backgroundColor: "rgb(251, 254, 255)" }}>
@@ -95,17 +107,10 @@ function UserNavbar() {
               variant="text"
               color="secondary"
               startIcon={<IoExitOutline />}
+              onClick={handleLogout}
+              sx={{ textTransform: "capitalize" }}
             >
-              <Link
-                to="/logout"
-                style={{
-                  textDecoration: "none",
-                  textTransform: "capitalize",
-                  color: "#37474f",
-                }}
-              >
-                Sign-Out
-              </Link>
+              Sign-Out
             </Button>
           </Stack>
         </Toolbar>

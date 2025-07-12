@@ -33,10 +33,7 @@ function SignUpForm() {
   const { isPending, mutate } = useMutation({
     mutationKey: ["register-user"],
     mutationFn: async (newUser: User) => {
-      const response = await axiosInstance.post(
-        "http://127.0.0.1:5800/api/auth/register",
-        newUser
-      );
+      const response = await axiosInstance.post("/api/auth/register", newUser);
       console.log(response.data);
       return response.data;
     },

@@ -82,3 +82,21 @@ export const loginUser = async (req: Request, res: Response) => {
     });
   }
 };
+
+// user log-out implementation
+
+export const logoutUser = async (req: Request, res: Response) => {
+  try {
+    res
+      .cookie("authToken", "", {
+        httpOnly: true,
+        expires: new Date(0),
+      })
+      .json({ game_of_throws: "Logged out successfully✅" });
+  } catch (e) {
+    res.status(500).json({
+      game_of_throws: "Something went wrong. Please Try again",
+      support: "nathanael.mutua.m@gmail.com",
+    });
+  }
+};
