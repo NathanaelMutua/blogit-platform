@@ -11,6 +11,7 @@ import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import axiosInstance from "../api/axios.instance";
 
 interface User {
   firstName: string;
@@ -31,7 +32,7 @@ function SignUpForm() {
   const { isPending, mutate } = useMutation({
     mutationKey: ["register-user"],
     mutationFn: async (newUser: User) => {
-      const response = await axios.post(
+      const response = await axiosInstance.post(
         "http://127.0.0.1:5800/api/auth/register",
         newUser
       );
@@ -42,7 +43,7 @@ function SignUpForm() {
       if (axios.isAxiosError(error)) {
         setFormError(error.response?.data.game_of_throws);
       } else {
-        setFormError("An Error Occurred in Registration!");
+        setFormError("An Error Occurred in SignUp!");
       }
     },
   });
