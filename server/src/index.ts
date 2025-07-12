@@ -1,6 +1,7 @@
 import express, { Express, Request, Response } from "express";
 import authRouter from "./routes/auth.route";
 import cors from "cors";
+import blogRouter from "./routes/blog.route";
 
 const app: Express = express();
 
@@ -18,6 +19,7 @@ app.get("/", (_req, res) => {
 });
 
 app.use("/api/auth", authRouter);
+app.use("/api/blogs", blogRouter);
 
 const port = process.env.PORT || 5800;
 

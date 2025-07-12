@@ -28,7 +28,8 @@ model Blog {
   userId       String
   title        String   @map("blog_title")
   synopsis     String   @map("blog_synopsis")
-  content      String   @map("blog_content")
+  content      String   @map("blog_markdown_content")
+  htmlContent  String   @map("blog_html_content")
   featureImage String   @map("blog_image")
   isDeleted    Boolean  @default(false) @map("deleted_status")
   createdAt    DateTime @default(now()) @map("creates_at")

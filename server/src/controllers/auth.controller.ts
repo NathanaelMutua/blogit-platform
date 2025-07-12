@@ -25,9 +25,9 @@ export const registerUser = async (req: Request, res: Response) => {
       },
     });
 
-    res.status(201).json({ message: "User registered successfully!" });
+    res.status(201).json({ game_of_throws: "User registered successfully!" });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
     res.status(500).json({
       game_of_throws: "Something went wrong. Please Try again",
       support: "nathanael.mutua.m@gmail.com",
