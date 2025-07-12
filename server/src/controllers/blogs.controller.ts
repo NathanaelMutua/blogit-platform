@@ -8,6 +8,7 @@ export const createBlog = async (req: Request, res: Response) => {
   // # create a blog post
   // which has all the blog data
   // get data from the request body
+  // have a middleware to convert markdown to HTML
   // pass the featured image to cloudinary and retrieve the URL
   // add the details to the blog database
 
