@@ -10,7 +10,7 @@ import {
 import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axiosInstance from "../api/axios.instance";
 
 interface User {
@@ -22,6 +22,7 @@ interface User {
 }
 
 function SignUpForm() {
+  const navigate = useNavigate();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [username, setUsername] = useState("");
@@ -59,6 +60,7 @@ function SignUpForm() {
       password,
     };
     mutate(newUser);
+    navigate("/login");
   }
 
   return (

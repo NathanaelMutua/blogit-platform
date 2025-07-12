@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../api/axios.instance";
+import useUser from "../store/userStore";
 
 interface LoginDetails {
   userIdentifier: string;
@@ -19,6 +20,7 @@ interface LoginDetails {
 }
 
 function SignInForm() {
+  const { setUser } = useUser();
   const [usernameState, setUsernameState] = useState(false);
   const [emailState, setEmailState] = useState(true);
   const [userIdentifier, setUserIdentifier] = useState("");
@@ -56,6 +58,9 @@ function SignInForm() {
       } else {
         setFormError("An Error Occurred in SignIn!");
       }
+    },
+    onSuccess: (data) => {
+      setUser(data);
     },
   });
 

@@ -1,4 +1,4 @@
-import { create, StateCreator, useStore } from "zustand";
+import { type StateCreator, create } from "zustand";
 import { persist } from "zustand/middleware";
 
 interface User {
@@ -30,6 +30,6 @@ const userStore: StateCreator<UserStore> = (set) => {
   };
 };
 
-const useUser = create(persist(useStore, { name: "BlogIt-User" }));
+const useUser = create(persist(userStore, { name: "BlogIt-User" }));
 
 export default useUser;
