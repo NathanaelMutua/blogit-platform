@@ -8,6 +8,9 @@ const theme = createTheme({
     background: { default: "#fafafa", paper: "#ffffff" },
     text: { primary: grey[800], secondary: grey[600] },
   },
+  customColors: {
+    sub: { main: blue[400] }, // added a custom color for some hightlight text
+  },
   components: {
     // gives my cards more elevation/shadow effect
     MuiCard: {
@@ -16,6 +19,6 @@ const theme = createTheme({
       },
     },
   },
-});
+} as any); // had to use type any to avoid type casting
 
 export default theme;

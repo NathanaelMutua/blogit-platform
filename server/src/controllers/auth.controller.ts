@@ -49,7 +49,7 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!matchedUser) {
       res.status(400).json({
         game_of_throws:
-          "Incorrect credentials. Do you want to SIGN UP instead1?",
+          "Incorrect credentials. Do you want to SIGN UP instead?",
         support: "nathanael.mutua.m@gmail.com",
       });
       return;
@@ -60,7 +60,7 @@ export const loginUser = async (req: Request, res: Response) => {
     if (!passwordMatch) {
       res.status(400).json({
         game_of_throws:
-          "Incorrect credentials. Do you want to SIGN UP instead2?",
+          "Incorrect credentials. Do you want to SIGN UP instead?",
         support: "nathanael.mutua.m@gmail.com",
       });
       return;

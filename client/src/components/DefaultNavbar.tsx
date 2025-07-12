@@ -1,8 +1,9 @@
 import { Box, Stack, AppBar, Toolbar, Typography, Button } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdPersonOutline } from "react-icons/md";
 
 function DefaultNavbar() {
+  const navigate = useNavigate();
   return (
     <Box component="section">
       <AppBar sx={{ backgroundColor: "rgb(251, 254, 255)" }}>
@@ -22,17 +23,12 @@ function DefaultNavbar() {
               variant="contained"
               color="secondary"
               startIcon={<MdPersonOutline />}
+              onClick={() => navigate("/login")}
+              sx={{
+                textTransform: "capitalize",
+              }}
             >
-              <Link
-                to="/login"
-                style={{
-                  textDecoration: "none",
-                  textTransform: "capitalize",
-                  color: "#fff",
-                }}
-              >
-                Sign-In
-              </Link>
+              Sign-In
             </Button>
           </Stack>
         </Toolbar>
@@ -42,3 +38,12 @@ function DefaultNavbar() {
 }
 
 export default DefaultNavbar;
+
+<Link
+  to="/login"
+  style={{
+    textDecoration: "none",
+    textTransform: "capitalize",
+    color: "#fff",
+  }}
+></Link>;

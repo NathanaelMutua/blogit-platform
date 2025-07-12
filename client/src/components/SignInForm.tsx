@@ -61,6 +61,8 @@ function SignInForm() {
     },
     onSuccess: (data) => {
       setUser(data);
+      setPassword("");
+      setUserIdentifier("");
     },
   });
 
@@ -170,7 +172,11 @@ function SignInForm() {
             Sign In
           </Button>
           <Typography variant="body2" fontSize="0.9rem">
-            <Link to="/register" style={{ textDecoration: "none" }}>
+            <Link
+              to="/register"
+              style={{ textDecoration: "none" }}
+              className="sign-in-toggle"
+            >
               Don't have an account? SignUp
             </Link>
           </Typography>

@@ -60,7 +60,7 @@ function UserNavbar() {
                 spacing={0.5}
                 className="nav-link"
               >
-                <FaPlus style={{ color: "#37474f" }} />
+                <FaPlus />
                 <Typography variant="h3" fontSize="0.95rem">
                   Create Blog
                 </Typography>

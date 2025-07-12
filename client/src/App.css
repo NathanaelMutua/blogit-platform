@@ -4,6 +4,16 @@
   box-sizing: border-box;
 }
 
+.sign-in-toggle,
+.nav-link {
+  color: #546e7a;
+  transition: 0.2s;
+}
+
 .nav-link:hover {
   color: #1565c0;
+}
+
+.sign-in-toggle:hover {
+  color: #64b5f6;
 }

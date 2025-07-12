@@ -30,6 +30,14 @@ function SignUpForm() {
   const [password, setPassword] = useState("");
   const [formError, setFormError] = useState("");
 
+  function clearData() {
+    setFirstName("");
+    setLastName("");
+    setEmail("");
+    setUsername("");
+    setPassword("");
+  }
+
   const { isPending, mutate } = useMutation({
     mutationKey: ["register-user"],
     mutationFn: async (newUser: User) => {
@@ -57,6 +65,9 @@ function SignUpForm() {
       password,
     };
     mutate(newUser);
+
+    clearData();
+
     navigate("/login");
   }
 
@@ -178,7 +189,11 @@ function SignUpForm() {
             Register
           </Button>
           <Typography variant="body2" fontSize="0.9rem">
-            <Link to="/login" style={{ textDecoration: "none" }}>
+            <Link
+              to="/login"
+              style={{ textDecoration: "none" }}
+              className="sign-in-toggle"
+            >
               Already have an account? SignIn
             </Link>
           </Typography>
