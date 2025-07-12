@@ -4,6 +4,6 @@ import markdownToHtml from "../middlewares/markdownToHtml";
 
 const blogRouter: Router = Router();
 
-blogRouter.post("/create", markdownToHtml, createBlog);
+blogRouter.post("/", markdownToHtml, createBlog);
 
 export default blogRouter;
