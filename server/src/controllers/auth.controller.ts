@@ -89,7 +89,6 @@ export const logoutUser = async (req: Request, res: Response) => {
   try {
     res
       .cookie("authToken", "", {
-        httpOnly: true,
         expires: new Date(0),
       })
       .json({ game_of_throws: "Logged out successfully✅" });
