@@ -1,5 +1,6 @@
 import { Box, Stack, AppBar, Toolbar, Typography, Button } from "@mui/material";
 import { Link } from "react-router-dom";
+import { MdPersonOutline } from "react-icons/md";
 
 function DefaultNavbar() {
   return (
@@ -17,7 +18,11 @@ function DefaultNavbar() {
             </Typography>
           </Link>
           <Stack direction="row" spacing={2} ml="auto">
-            <Button variant="contained" color="secondary">
+            <Button
+              variant="contained"
+              color="secondary"
+              startIcon={<MdPersonOutline />}
+            >
               <Link
                 to="/login"
                 style={{

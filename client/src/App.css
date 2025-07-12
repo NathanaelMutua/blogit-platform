@@ -3,3 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.nav-link:hover {
+  color: #1565c0;
+}
