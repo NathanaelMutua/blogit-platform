@@ -3,6 +3,7 @@ import { PrismaClient } from "@prisma/client";
 
 const myClient = new PrismaClient();
 
+// function to create a blog
 export const createBlog = async (req: Request, res: Response) => {
   try {
     const { userId, title, synopsis, content, htmlContent, featureImage } =
@@ -30,6 +31,7 @@ export const createBlog = async (req: Request, res: Response) => {
   }
 };
 
+// function to get all blogs
 export const getAllBlogs = async (req: Request, res: Response) => {
   try {
     const blogs = await myClient.blog.findMany({
@@ -79,7 +81,29 @@ export const updateBlog = async (req: Request, res: Response) => {
       .status(200)
       .json({ game_of_throws: "Blog updated successfully!✅", updatedPost });
   } catch (e) {
-    console.log(e);
+    // console.log(e);
+    res.status(500).json({
+      game_of_throws: "An error occurred!",
+      support: "nathanael.mutua.m@gmail.com",
+    });
+  }
+};
+
+// function to delete a blog
+export const deleteBlog = async (req: Request, res: Response) => {
+  try {
+    const { blogId } = req.params;
+    const deletedBlog = await myClient.blog.update({
+      where: {
+        id: blogId,
+      },
+      data: {
+        isDeleted: true,
+      },
+    });
+    res.status(200).json({ game_of_throws: "Blog deleted successfully!❌" });
+  } catch (e) {
+    // console.log(e);
     res.status(500).json({
       game_of_throws: "An error occurred!",
       support: "nathanael.mutua.m@gmail.com",
