@@ -7,7 +7,7 @@ import {
   updateBlog,
 } from "../controllers/blogs.controller";
 import markdownToHtml from "../middlewares/markdownToHtml";
-import authenticateToken from "../middlewares/validations/validateToken";
+import authenticateToken from "../middlewares/validations/authenticateToken";
 
 const blogRouter: Router = Router();
 

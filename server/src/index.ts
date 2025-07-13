@@ -4,8 +4,10 @@ import cors from "cors";
 import blogRouter from "./routes/blog.route";
 import userRouter from "./routes/user.route";
 import cookieParser from "cookie-parser";
-
 const app: Express = express();
+import dotenv from "dotenv";
+
+dotenv.config();
 
 app.use(express.json());
 app.use(cookieParser());

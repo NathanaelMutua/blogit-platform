@@ -7,6 +7,8 @@ import "./App.css";
 import Header from "./components/Header";
 import BlogHomePage from "./pages/BlogHomePage";
 import BlogListPage from "./pages/BlogListPage";
+import CreateBlogPage from "./pages/CreateBlogPage";
+import Protected from "./components/Protected";
 
 function App() {
   return (
@@ -19,8 +21,14 @@ function App() {
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/blogs" element={<BlogListPage />} />
-            <Route path="/blogs" element={<></>} />
-            <Route path="/create" element={<></>} />
+            <Route
+              path="/create"
+              element={
+                <Protected>
+                  <CreateBlogPage />
+                </Protected>
+              }
+            />
           </Routes>
         </BrowserRouter>
       </ThemeProvider>

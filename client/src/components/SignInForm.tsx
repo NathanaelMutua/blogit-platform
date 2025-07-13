@@ -8,7 +8,7 @@ import {
   Alert,
 } from "@mui/material";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useMutation } from "@tanstack/react-query";
 import axiosInstance from "../api/axios.instance";
@@ -21,6 +21,7 @@ interface LoginDetails {
 
 function SignInForm() {
   const { setUser } = useUser();
+  const navigate = useNavigate();
   const [usernameState, setUsernameState] = useState(false);
   const [emailState, setEmailState] = useState(true);
   const [userIdentifier, setUserIdentifier] = useState("");
@@ -40,6 +41,7 @@ function SignInForm() {
   function handleSignIn() {
     const loginDetails = { userIdentifier, password };
     mutate(loginDetails);
+    navigate("/");
   }
 
   const { isPending, mutate } = useMutation({

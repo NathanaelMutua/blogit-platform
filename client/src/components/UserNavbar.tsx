@@ -68,7 +68,7 @@ function UserNavbar() {
               </Stack>
             </Link>
             <Link
-              to="/"
+              to="/create"
               style={{
                 textDecoration: "none",
                 color: "#37474f",

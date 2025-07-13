@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
-import { AuthenticatedRequest } from "../middlewares/validations/validateToken";
+import { AuthenticatedRequest } from "../middlewares/validations/authenticateToken";
 
 const myClient = new PrismaClient();
 

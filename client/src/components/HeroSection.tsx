@@ -55,6 +55,7 @@ function HeroSection() {
                 }}
                 color="primary"
                 startIcon={<FiPenTool />}
+                onClick={() => navigate("/create")}
               >
                 Start Writing
               </Button>

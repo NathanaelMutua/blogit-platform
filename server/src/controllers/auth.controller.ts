@@ -74,7 +74,13 @@ export const loginUser = async (req: Request, res: Response) => {
     } = matchedUser;
 
     const token = jwt.sign(userDetails, process.env.JWT_SECRET!);
-    res.cookie("authToken", token).json(userDetails);
+    res
+      .cookie("authToken", token, {
+        httpOnly: true,
+        sameSite: "lax",
+        maxAge: 24 * 60 * 60 * 1000,
+      })
+      .json(userDetails);
   } catch (e) {
     res.status(500).json({
       game_of_throws: "Something went wrong. Please Try again",
@@ -88,7 +94,9 @@ export const loginUser = async (req: Request, res: Response) => {
 export const logoutUser = async (req: Request, res: Response) => {
   try {
     res
-      .cookie("authToken", "", {
+      .cookie("authToken", {
+        httpOnly: true,
+        sameSite: "none",
         expires: new Date(0),
       })
       .json({ game_of_throws: "Logged out successfully✅" });

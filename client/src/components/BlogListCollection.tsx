@@ -58,6 +58,14 @@ function BlogListCollection() {
                   Lens”“A Techie's Escape: Safari Adventures Through a
                   Developer's Lens”
                 </Typography>
+                <CardActions sx={{ paddingInline: 0 }}>
+                  <Button
+                    variant="contained"
+                    sx={{ textTransform: "capitalize", padding: "0.1rem 1rem" }}
+                  >
+                    read more
+                  </Button>
+                </CardActions>
                 <Stack
                   position="absolute"
                   bottom="1.2rem"
