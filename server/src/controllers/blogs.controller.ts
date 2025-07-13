@@ -110,3 +110,25 @@ export const deleteBlog = async (req: Request, res: Response) => {
     });
   }
 };
+
+// function to retrieve a specific blog
+export const getSpecificBlog = async (req: Request, res: Response) => {
+  try {
+    const { blogId } = req.params;
+
+    const specificBlog = await myClient.blog.findFirst({
+      where: {
+        id: blogId,
+      },
+    });
+    res
+      .status(200)
+      .json({ game_of_throws: "Blog retrieved successfully!✅", specificBlog });
+  } catch (e) {
+    // console.log(e);
+    res.status(500).json({
+      game_of_throws: "An error occurred!",
+      support: "nathanael.mutua.m@gmail.com",
+    });
+  }
+};
