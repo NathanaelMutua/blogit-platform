@@ -56,3 +56,33 @@ export const getAllBlogs = async (req: Request, res: Response) => {
     });
   }
 };
+
+export const updateBlog = async (req: Request, res: Response) => {
+  try {
+    const { blogId } = req.params;
+
+    const { title, synopsis, content, htmlContent, featureImage } = req.body;
+
+    const updatedPost = await myClient.blog.update({
+      where: {
+        id: blogId,
+      },
+      data: {
+        title,
+        synopsis,
+        content,
+        htmlContent,
+        featureImage,
+      },
+    });
+    res
+      .status(200)
+      .json({ game_of_throws: "Blog updated successfully!✅", updatedPost });
+  } catch (e) {
+    console.log(e);
+    res.status(500).json({
+      game_of_throws: "An error occurred!",
+      support: "nathanael.mutua.m@gmail.com",
+    });
+  }
+};
