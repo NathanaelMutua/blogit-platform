@@ -5,6 +5,7 @@ import SignIn from "./pages/SignIn";
 import theme from "./assets/theme";
 import "./App.css";
 import Header from "./components/Header";
+import BlogHomePage from "./pages/BlogHomePage";
 
 function App() {
   return (
@@ -13,7 +14,7 @@ function App() {
         <BrowserRouter>
           <Header />
           <Routes>
-            <Route path="/" element={<SignUp />} />
+            <Route path="/" element={<BlogHomePage />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/logout" element={<></>} />

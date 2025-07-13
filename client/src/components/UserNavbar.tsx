@@ -23,7 +23,7 @@ function UserNavbar() {
     const response = await axiosInstance.post("/api/auth/logout");
     console.log(response.data);
     logoutUser();
-    navigate("/login");
+    navigate("/");
   }
 
   return (
