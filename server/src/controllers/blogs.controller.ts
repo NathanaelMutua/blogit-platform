@@ -4,14 +4,6 @@ import { PrismaClient } from "@prisma/client";
 const myClient = new PrismaClient();
 
 export const createBlog = async (req: Request, res: Response) => {
-  // what I wanna do:
-  // # create a blog post
-  // which has all the blog data
-  // get data from the request body
-  // have a middleware to convert markdown to HTML
-  // pass the featured image to cloudinary and retrieve the URL
-  // add the details to the blog database
-
   try {
     const { userId, title, synopsis, content, htmlContent, featureImage } =
       req.body;
@@ -33,6 +25,33 @@ export const createBlog = async (req: Request, res: Response) => {
   } catch (e) {
     res.status(500).json({
       game_of_throws: "Something went wrong. Please Try again",
+      support: "nathanael.mutua.m@gmail.com",
+    });
+  }
+};
+
+export const getAllBlogs = async (req: Request, res: Response) => {
+  try {
+    const blogs = await myClient.blog.findMany({
+      where: {
+        isDeleted: false,
+      },
+      include: {
+        user: {
+          select: {
+            firstName: true,
+            lastName: true,
+            username: true, // this will prevent too much data, displaying only the name and username
+          },
+        },
+      },
+    });
+    res
+      .status(200)
+      .json({ game_of_throws: "Blogs retrieved successfully!✅", blogs });
+  } catch (e) {
+    res.status(500).json({
+      game_of_throws: "An error occurred",
       support: "nathanael.mutua.m@gmail.com",
     });
   }
