@@ -6,6 +6,7 @@ import theme from "./assets/theme";
 import "./App.css";
 import Header from "./components/Header";
 import BlogHomePage from "./pages/BlogHomePage";
+import BlogListPage from "./pages/BlogListPage";
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
             <Route path="/" element={<BlogHomePage />} />
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
-            <Route path="/logout" element={<></>} />
+            <Route path="/blogs" element={<BlogListPage />} />
             <Route path="/blogs" element={<></>} />
             <Route path="/create" element={<></>} />
           </Routes>

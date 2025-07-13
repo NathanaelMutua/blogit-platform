@@ -10,6 +10,7 @@ import {
 import { Link, useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
+import { MdOutlineLibraryBooks } from "react-icons/md";
 import useUserStore from "../store/userStore";
 import axiosInstance from "../api/axios.instance";
 import useUser from "../store/userStore";
@@ -46,6 +47,26 @@ function UserNavbar() {
             alignItems="center"
             spacing={1.5}
           >
+            <Link
+              to="/blogs"
+              style={{
+                textDecoration: "none",
+                color: "#37474f",
+              }}
+            >
+              <Stack
+                direction="row"
+                display="flex"
+                alignItems="center"
+                spacing={0.5}
+                className="nav-link"
+              >
+                <MdOutlineLibraryBooks />
+                <Typography variant="h3" fontSize="0.95rem">
+                  Blogs
+                </Typography>
+              </Stack>
+            </Link>
             <Link
               to="/"
               style={{

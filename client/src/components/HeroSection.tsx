@@ -20,7 +20,7 @@ function HeroSection() {
         <Stack display="flex" alignItems="center">
           <Typography
             variant="h2"
-            fontWeight="bold"
+            fontWeight="800"
             fontSize="3.5rem"
             textAlign="center"
             sx={{ width: { xs: 600, sm: 600, md: 600, lg: 600 } }}
@@ -89,6 +89,7 @@ function HeroSection() {
                 }}
                 color="primary"
                 endIcon={<MdOutlineLibraryBooks />}
+                onClick={() => navigate("/blogs")}
               >
                 Explore stories
               </Button>
