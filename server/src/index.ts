@@ -2,10 +2,13 @@ import express, { Express, Request, Response } from "express";
 import authRouter from "./routes/auth.route";
 import cors from "cors";
 import blogRouter from "./routes/blog.route";
+import userRouter from "./routes/user.route";
+import cookieParser from "cookie-parser";
 
 const app: Express = express();
 
 app.use(express.json());
+app.use(cookieParser());
 app.use(
   cors({
     origin: ["http://localhost:5173"],
@@ -20,6 +23,7 @@ app.get("/", (_req, res) => {
 
 app.use("/api/auth", authRouter);
 app.use("/api/blogs", blogRouter);
+app.use("/api/user", userRouter);
 
 const port = process.env.PORT || 5800;
 

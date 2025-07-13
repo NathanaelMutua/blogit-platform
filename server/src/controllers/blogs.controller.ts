@@ -101,7 +101,10 @@ export const deleteBlog = async (req: Request, res: Response) => {
         isDeleted: true,
       },
     });
-    res.status(200).json({ game_of_throws: "Blog deleted successfully!❌" });
+    res.status(200).json({
+      game_of_throws: "Blog deleted successfully!❌",
+      deleted_blog: deletedBlog.title,
+    });
   } catch (e) {
     // console.log(e);
     res.status(500).json({
