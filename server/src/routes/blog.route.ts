@@ -7,10 +7,11 @@ import {
   updateBlog,
 } from "../controllers/blogs.controller";
 import markdownToHtml from "../middlewares/markdownToHtml";
+import authenticateToken from "../middlewares/validations/validateToken";
 
 const blogRouter: Router = Router();
 
-blogRouter.post("/", markdownToHtml, createBlog);
+blogRouter.post("/", authenticateToken, markdownToHtml, createBlog);
 blogRouter.get("/", getAllBlogs);
 blogRouter.patch("/:blogId", markdownToHtml, updateBlog);
 blogRouter.delete("/:blogId", deleteBlog);

@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import { UserPayload } from "../types";
 
 const myClient = new PrismaClient();
 
@@ -7,7 +8,7 @@ const myClient = new PrismaClient();
 export const createBlog = async (req: Request, res: Response) => {
   try {
     const { title, synopsis, content, htmlContent, featureImage } = req.body;
-    const { id } = req.user;
+    const { id } = req.user as UserPayload;
     const newBlog = await myClient.blog.create({
       data: {
         title,
@@ -23,6 +24,7 @@ export const createBlog = async (req: Request, res: Response) => {
       blog_title: newBlog.title,
     });
   } catch (e) {
+    console.log(e);
     res.status(500).json({
       game_of_throws: "Something went wrong. Please Try again",
       support: "nathanael.mutua.m@gmail.com",
