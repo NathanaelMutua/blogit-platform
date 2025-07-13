@@ -6,9 +6,8 @@ const myClient = new PrismaClient();
 // function to create a blog
 export const createBlog = async (req: Request, res: Response) => {
   try {
-    const { userId, title, synopsis, content, htmlContent, featureImage } =
-      req.body;
-
+    const { title, synopsis, content, htmlContent, featureImage } = req.body;
+    const { id } = req.user;
     const newBlog = await myClient.blog.create({
       data: {
         title,
@@ -16,7 +15,7 @@ export const createBlog = async (req: Request, res: Response) => {
         content,
         htmlContent,
         featureImage,
-        userId,
+        userId: id,
       },
     });
     res.status(201).json({
