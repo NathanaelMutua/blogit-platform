@@ -26,7 +26,7 @@ function BlogFullPage() {
   const user = useUser();
   const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["get-all_tasks"],
+    queryKey: ["get-specific-blog"],
     queryFn: async () => {
       const response = await axiosInstance.get(`/api/blogs/${blogId}`);
       console.log(response.data);

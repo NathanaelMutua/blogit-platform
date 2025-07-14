@@ -14,6 +14,7 @@ import LoadingComponent from "./LoadingComponent";
 import { useQuery } from "@tanstack/react-query";
 import FormattedDate from "./FormattedDateComponent";
 import { useNavigate } from "react-router-dom";
+import useUserStore from "../store/userStore";
 
 interface Blog {
   id: string;
@@ -27,8 +28,9 @@ interface Blog {
 
 function UserPostDetails() {
   const navigate = useNavigate();
+  const user = useUserStore();
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["get-user-blogs"],
+    queryKey: ["get-user-blogs", user.user?.username],
     queryFn: async () => {
       const response = await axiosInstance.get("/api/user/blogs");
       console.log(response);
@@ -91,7 +93,10 @@ function UserPostDetails() {
                     >
                       <FaRegEye />
                     </IconButton>
-                    <IconButton color="secondary">
+                    <IconButton
+                      color="secondary"
+                      onClick={() => navigate(`/update/${blog.id}`)}
+                    >
                       <FaEdit />
                     </IconButton>
                     <IconButton color="warning">

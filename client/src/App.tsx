@@ -11,6 +11,7 @@ import CreateBlogPage from "./pages/CreateBlogPage";
 import Protected from "./components/Protected";
 import BlogFullPage from "./pages/BlogFullPage";
 import ProfilePage from "./pages/ProfilePage";
+import UpdateBlog from "./pages/UpdateBlog";
 
 function App() {
   return (
@@ -37,6 +38,14 @@ function App() {
               element={
                 <Protected>
                   <ProfilePage />
+                </Protected>
+              }
+            />
+            <Route
+              path="/update/:blogId"
+              element={
+                <Protected>
+                  <UpdateBlog />
                 </Protected>
               }
             />
