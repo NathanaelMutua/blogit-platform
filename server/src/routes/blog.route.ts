@@ -12,7 +12,7 @@ import authenticateToken from "../middlewares/validations/authenticateToken";
 const blogRouter: Router = Router();
 
 blogRouter.post("/", authenticateToken, markdownToHtml, createBlog);
-blogRouter.get("/", getAllBlogs);
+blogRouter.get("/", authenticateToken, getAllBlogs);
 blogRouter.patch("/:blogId", markdownToHtml, updateBlog);
 blogRouter.delete("/:blogId", deleteBlog);
 blogRouter.get("/:blogId", getSpecificBlog);

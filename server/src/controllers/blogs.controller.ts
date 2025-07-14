@@ -60,6 +60,7 @@ export const getAllBlogs = async (req: Request, res: Response) => {
   }
 };
 
+// update a blog post
 export const updateBlog = async (req: Request, res: Response) => {
   try {
     const { blogId } = req.params;
@@ -132,6 +133,34 @@ export const getSpecificBlog = async (req: Request, res: Response) => {
     // console.log(e);
     res.status(500).json({
       game_of_throws: "An error occurred!",
+      support: "nathanael.mutua.m@gmail.com",
+    });
+  }
+};
+
+export const getUserBlogs = async (req: Request, res: Response) => {
+  try {
+    const { id } = req.user;
+    const blogs = await myClient.blog.findMany({
+      where: {
+        userId: id,
+      },
+      include: {
+        user: {
+          select: {
+            firstName: true,
+            lastName: true,
+            username: true, // this will prevent too much data, displaying only the name and username
+          },
+        },
+      },
+    });
+    res
+      .status(200)
+      .json({ game_of_throws: "Blogs retrieved successfully!✅", blogs });
+  } catch (e) {
+    res.status(500).json({
+      game_of_throws: "An error occurred",
       support: "nathanael.mutua.m@gmail.com",
     });
   }
