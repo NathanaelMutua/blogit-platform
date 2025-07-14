@@ -12,7 +12,6 @@ function Protected({ children }: { children: React.ReactNode }) {
       navigate("/login");
     }
   }, [user]);
-
   return <>{children}</>;
 }
 

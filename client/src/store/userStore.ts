@@ -24,9 +24,9 @@ const userStore: StateCreator<UserStore> = (set) => {
       });
     },
     logoutUser: () => {
-      set(function () {
-        return { user: null };
-      });
+      set(() => ({ user: null }));
+      sessionStorage.clear(); // if you’re using session storage
+      localStorage.removeItem("BlogIt-User"); // ✅ clear persisted user
     },
   };
 };

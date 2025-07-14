@@ -11,7 +11,7 @@ export const updateUserInfo = async (
 ) => {
   try {
     const { firstName, lastName, username, email, profileImage } = req.body;
-    const userId = req.user?.id;
+    const userId = req.user.id;
 
     // no need for me to have this in a seperate middleware
     if (!userId) {
@@ -58,8 +58,28 @@ export const updatePassword = async (req: Request, res: Response) => {
 };
 
 // function to get all user specific blogs
-export const getAllUserBlogs = async (req: Request, res: Response) => {
+export const getAllUserBlogs = async (
+  req: AuthenticatedRequest,
+  res: Response
+) => {
   try {
+    const UserName = req.user.username;
+
+    const allUserBlogs = await myClient.blog.findMany({
+      where: {
+        user: {
+          is: {
+            username: UserName,
+            isDeleted: false,
+          },
+        },
+      },
+    });
+    console.log(req.user.username); // come back to this debuggin in a few
+    res.status(200).json({
+      game_of_throws: "User blogs retrieved successfully! ✅",
+      userBlogs: allUserBlogs,
+    });
   } catch (e) {
     // console.log(e);
     res.status(500).json({

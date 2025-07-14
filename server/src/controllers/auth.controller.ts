@@ -74,11 +74,13 @@ export const loginUser = async (req: Request, res: Response) => {
     } = matchedUser;
 
     const token = jwt.sign(userDetails, process.env.JWT_SECRET!);
+    res.clearCookie("authToken", { path: "/" });
     res
       .cookie("authToken", token, {
         httpOnly: true,
         sameSite: "lax",
         maxAge: 24 * 60 * 60 * 1000,
+        path: "/", // a fix to me getting a reused cookie, I will clear it in the logout
       })
       .json(userDetails);
   } catch (e) {
@@ -95,11 +97,13 @@ export const logoutUser = async (req: Request, res: Response) => {
   try {
     res
       .cookie("authToken", {
+        path: "/",
         httpOnly: true,
         sameSite: "none",
         expires: new Date(0),
       })
       .json({ game_of_throws: "Logged out successfully✅" });
+    res.clearCookie("authToken", { path: "/" });
   } catch (e) {
     res.status(500).json({
       game_of_throws: "Something went wrong. Please Try again",

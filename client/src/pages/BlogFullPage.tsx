@@ -19,9 +19,11 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { BiDislike } from "react-icons/bi";
 import { BiLike } from "react-icons/bi";
+import useUser from "../store/userStore";
 
 function BlogFullPage() {
   const { blogId } = useParams();
+  const user = useUser();
   const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["get-all_tasks"],
@@ -162,11 +164,24 @@ function BlogFullPage() {
               sx={{
                 textTransform: "capitalize",
                 fontSize: "0.7rem",
+                mb: 2,
               }}
               onClick={() => navigate("/blogs")}
             >
               Return To Blogs
             </Button>
+            {data.user?.username === user.user?.username && (
+              <Button
+                variant="contained"
+                sx={{
+                  textTransform: "capitalize",
+                  fontSize: "0.7rem",
+                }}
+                onClick={() => navigate("/profile")}
+              >
+                Profile
+              </Button>
+            )}
           </Stack>
         </Grid>
       </Grid>

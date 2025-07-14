@@ -20,7 +20,7 @@ interface LoginDetails {
 }
 
 function SignInForm() {
-  const { setUser } = useUser();
+  const { setUser, user } = useUser();
   const navigate = useNavigate();
   const [usernameState, setUsernameState] = useState(false);
   const [emailState, setEmailState] = useState(true);
@@ -63,8 +63,10 @@ function SignInForm() {
     },
     onSuccess: (data) => {
       setUser(data);
+      console.log(data);
       setPassword("");
       setUserIdentifier("");
+      console.log(user);
     },
   });
 

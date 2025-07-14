@@ -11,17 +11,16 @@ import { Link, useNavigate } from "react-router-dom";
 import { IoExitOutline } from "react-icons/io5";
 import { FaPlus } from "react-icons/fa6";
 import { MdOutlineLibraryBooks } from "react-icons/md";
-import useUserStore from "../store/userStore";
 import axiosInstance from "../api/axios.instance";
 import useUser from "../store/userStore";
 
 function UserNavbar() {
-  const user = useUserStore();
-  const { logoutUser } = useUser();
+  const { user, logoutUser } = useUser();
   const navigate = useNavigate();
 
   async function handleLogout() {
     const response = await axiosInstance.post("/api/auth/logout");
+    console.log(user);
     console.log(response.data);
     logoutUser();
     navigate("/");
@@ -97,7 +96,7 @@ function UserNavbar() {
           >
             <Box>
               <Link
-                to="/"
+                to="/profile"
                 style={{
                   textDecoration: "none",
                   color: "#37474f",
@@ -107,7 +106,7 @@ function UserNavbar() {
                 }}
               >
                 <Typography variant="body2" textTransform="capitalize">
-                  Welcome, {user.user?.firstName}
+                  Welcome, {user?.firstName}
                 </Typography>
                 <Avatar
                   sx={{
@@ -119,8 +118,8 @@ function UserNavbar() {
                     height: "2rem",
                   }}
                 >
-                  {user.user?.firstName[0].toUpperCase()}
-                  {user.user?.lastName[0].toUpperCase()}
+                  {user?.firstName[0].toUpperCase()}
+                  {user?.lastName[0].toUpperCase()}
                 </Avatar>
               </Link>
             </Box>
