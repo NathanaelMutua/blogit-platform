@@ -7,9 +7,54 @@ import {
   TextField,
   CardActions,
   Button,
+  Alert,
 } from "@mui/material";
+import { useMutation } from "@tanstack/react-query";
+import { useState } from "react";
+import axiosInstance from "../api/axios.instance";
+import axios from "axios";
+
+interface User {
+  firstName: string;
+  lastName: string;
+  profileImage: string;
+}
 
 function ProfileDetails() {
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [profileImage, setProfileImage] = useState("");
+  const [formError, setFormError] = useState("");
+
+  const { mutate } = useMutation({
+    mutationKey: ["update-user"],
+    mutationFn: async (updatedUser: User) => {
+      const response = await axiosInstance.patch("/api/user", updatedUser);
+      console.log(response.data);
+      return response.data;
+    },
+    onError: (error) => {
+      if (axios.isAxiosError(error)) {
+        setFormError(error.response?.data.game_of_throws);
+      } else {
+        setFormError("An Error Occurred in SignUp!");
+      }
+    },
+  });
+
+  function handleProfileUpdate() {
+    setFormError("");
+    const updatedUser = {
+      firstName,
+      lastName,
+      profileImage,
+    };
+    mutate(updatedUser);
+    setFirstName("");
+    setLastName("");
+    setProfileImage("");
+  }
+
   return (
     <Box>
       <Card
@@ -26,33 +71,45 @@ function ProfileDetails() {
           Update your personal information and personal details
         </Typography>
         <CardContent>
+          {formError && <Alert severity="error">{formError}</Alert>}
           <Stack pb={2}>
             <Typography variant="h5" fontWeight="bold" fontSize="0.9rem">
               First Name
             </Typography>
-            <TextField placeholder="First Name" size="small" />
+            <TextField
+              placeholder="First Name"
+              size="small"
+              onChange={(e) => setFirstName(e.target.value)}
+            />
           </Stack>
           <Stack pb={2}>
             <Typography variant="h5" fontWeight="bold" fontSize="0.9rem">
               Last Name
             </Typography>
-            <TextField placeholder="Last Name" size="small" />
-          </Stack>
-          <Stack pb={2}>
-            <Typography variant="h5" fontWeight="bold" fontSize="0.9rem">
-              Username
-            </Typography>
-            <TextField placeholder="Username" size="small" />
+            <TextField
+              placeholder="Last Name"
+              size="small"
+              onChange={(e) => setLastName(e.target.value)}
+            />
           </Stack>
           <Stack pb={1}>
             <Typography variant="h5" fontWeight="bold" fontSize="0.9rem">
               Profile Image
             </Typography>
-            <TextField placeholder="Profile Image URL" size="small" />
+            <TextField
+              placeholder="Profile Image URL"
+              size="small"
+              type="url"
+              onChange={(e) => setProfileImage(e.target.value)}
+            />
           </Stack>
         </CardContent>
         <CardActions>
-          <Button variant="contained" color="secondary">
+          <Button
+            variant="contained"
+            color="secondary"
+            onClick={handleProfileUpdate}
+          >
             Update profile
           </Button>
         </CardActions>

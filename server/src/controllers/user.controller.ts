@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { PrismaClient } from "@prisma/client";
 import { AuthenticatedRequest } from "../middlewares/validations/authenticateToken";
+import bcrypt from "bcryptjs";
 
 const myClient = new PrismaClient();
 
@@ -26,8 +27,6 @@ export const updateUserInfo = async (
       data: {
         firstName,
         lastName,
-        username,
-        email,
         profileImage,
       },
     });
@@ -46,10 +45,56 @@ export const updateUserInfo = async (
 };
 
 // function to update password
-export const updatePassword = async (req: Request, res: Response) => {
+export const updatePassword = async (
+  req: AuthenticatedRequest,
+  res: Response
+): Promise<void> => {
   try {
+    const { password, newPassword, confirmPassword } = req.body;
+    const id = req.user.id;
+
+    if (!password || !newPassword || !confirmPassword) {
+      res
+        .status(400)
+        .json({ game_of_throws: "All password fields are required" });
+      return;
+    }
+
+    if (newPassword !== confirmPassword) {
+      res.status(400).json({ game_of_throws: "Recheck the entered password!" });
+      return;
+    }
+
+    const currentUser = await myClient.user.findFirst({ where: { id } });
+
+    if (!currentUser || !currentUser.password) {
+      res
+        .status(400)
+        .json({ game_of_throws: "User not found or password missing!" });
+      return;
+    }
+
+    const passwordMatch = bcrypt.compareSync(password, currentUser.password);
+
+    if (!passwordMatch) {
+      res.status(400).json({
+        game_of_throws: "Incorrect current credentials!",
+        support: "nathanael.mutua.m@gmail.com",
+      });
+      return;
+    }
+
+    const updatedHashedPassword = await bcrypt.hash(newPassword, 10);
+
+    await myClient.user.update({
+      where: { id },
+      data: { password: updatedHashedPassword },
+    });
+
+    res
+      .status(200)
+      .json({ game_of_throws: "Password updated successfully ✅" });
   } catch (e) {
-    // console.log(e);
     res.status(500).json({
       game_of_throws: "An error occurred!",
       support: "nathanael.mutua.m@gmail.com",
@@ -75,7 +120,7 @@ export const getAllUserBlogs = async (
         },
       },
     });
-    console.log(req.user.username); // come back to this debuggin in a few
+    // console.log(req.user.username); // come back to this debuggin in a few
     res.status(200).json({
       game_of_throws: "User blogs retrieved successfully! ✅",
       userBlogs: allUserBlogs,
