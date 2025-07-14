@@ -14,6 +14,7 @@ import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../api/axios.instance";
 import LoadingComponent from "./LoadingComponent";
 import FormattedDate from "./FormattedDateComponent";
+import { useNavigate } from "react-router-dom";
 
 interface BlogUser {
   firstName: string;
@@ -33,13 +34,13 @@ interface Blog {
 }
 
 function BlogListCollection() {
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery({
-    queryKey: ["get-all_tasks"],
+    queryKey: ["get-blog-list"],
     queryFn: async () => {
       const response = await axiosInstance.get("/api/blogs");
       console.log(response);
-      const allBlogs = response.data.blogs;
-      return allBlogs;
+      return response.data.blogs;
     },
   });
   if (isLoading) {
@@ -110,6 +111,7 @@ function BlogListCollection() {
                           textTransform: "capitalize",
                           padding: "0.1rem 1rem",
                         }}
+                        onClick={() => navigate(`/blogs/${blog.id}`)}
                       >
                         read more
                       </Button>
