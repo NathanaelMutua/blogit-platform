@@ -37,13 +37,17 @@ function BlogListCollection() {
     queryKey: ["get-all_tasks"],
     queryFn: async () => {
       const response = await axiosInstance.get("/api/blogs");
-      console.log(response.data);
+      console.log(response);
       const allBlogs = response.data.blogs;
       return allBlogs;
     },
   });
   if (isLoading) {
-    return <LoadingComponent />;
+    return (
+      <Box paddingTop={6}>
+        <LoadingComponent />
+      </Box>
+    );
   }
 
   if (isError) {
@@ -64,7 +68,7 @@ function BlogListCollection() {
             <Grid size={{ xs: 11, sm: 8, md: 6, lg: 4 }} key={blog.id}>
               <Card
                 sx={{
-                  minHeight: "31rem",
+                  minHeight: "34rem",
                   display: "flex",
                   flexDirection: "column",
                   alignItems: "center",

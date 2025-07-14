@@ -9,6 +9,7 @@ import BlogHomePage from "./pages/BlogHomePage";
 import BlogListPage from "./pages/BlogListPage";
 import CreateBlogPage from "./pages/CreateBlogPage";
 import Protected from "./components/Protected";
+import BlogFullPage from "./pages/BlogFullPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/register" element={<SignUp />} />
             <Route path="/login" element={<SignIn />} />
             <Route path="/blogs" element={<BlogListPage />} />
+            <Route path="/blogs/:blogId" element={<BlogFullPage />} />
             <Route
               path="/create"
               element={

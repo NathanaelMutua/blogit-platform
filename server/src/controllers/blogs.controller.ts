@@ -125,6 +125,15 @@ export const getSpecificBlog = async (req: Request, res: Response) => {
       where: {
         id: blogId,
       },
+      include: {
+        user: {
+          select: {
+            firstName: true,
+            lastName: true,
+            username: true,
+          },
+        },
+      },
     });
     res
       .status(200)
