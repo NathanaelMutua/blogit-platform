@@ -9,18 +9,20 @@ import {
   Grid,
   Stack,
   Typography,
+  Button,
 } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axiosInstance from "../api/axios.instance";
 import LoadingComponent from "../components/LoadingComponent";
 import FormattedDate from "../components/FormattedDateComponent";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { IoShareSocialSharp } from "react-icons/io5";
 import { BiDislike } from "react-icons/bi";
 import { BiLike } from "react-icons/bi";
 
 function BlogFullPage() {
   const { blogId } = useParams();
+  const navigate = useNavigate();
   const { data, isLoading, isError } = useQuery({
     queryKey: ["get-all_tasks"],
     queryFn: async () => {
@@ -77,7 +79,7 @@ function BlogFullPage() {
                 <Typography
                   variant="h4"
                   fontWeight="bold"
-                  fontSize="1.2rem"
+                  fontSize="1.9rem"
                   sx={{ paddingBottom: "0.5rem" }}
                 >
                   {data.title}
@@ -154,6 +156,18 @@ function BlogFullPage() {
               </CardContent>
             </Stack>
           </Card>
+          <Stack sx={{ paddingTop: "2rem" }}>
+            <Button
+              variant="outlined"
+              sx={{
+                textTransform: "capitalize",
+                fontSize: "0.7rem",
+              }}
+              onClick={() => navigate("/blogs")}
+            >
+              Return To Blogs
+            </Button>
+          </Stack>
         </Grid>
       </Grid>
     </Box>
