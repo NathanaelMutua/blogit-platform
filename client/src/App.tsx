@@ -10,6 +10,7 @@ import BlogListPage from "./pages/BlogListPage";
 import CreateBlogPage from "./pages/CreateBlogPage";
 import Protected from "./components/Protected";
 import BlogFullPage from "./pages/BlogFullPage";
+import ProfilePage from "./pages/ProfilePage";
 
 function App() {
   return (
@@ -28,6 +29,14 @@ function App() {
               element={
                 <Protected>
                   <CreateBlogPage />
+                </Protected>
+              }
+            />
+            <Route
+              path="/profile"
+              element={
+                <Protected>
+                  <ProfilePage />
                 </Protected>
               }
             />
