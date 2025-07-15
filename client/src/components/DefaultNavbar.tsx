@@ -8,10 +8,20 @@ function DefaultNavbar() {
     <Box component="section">
       <AppBar sx={{ backgroundColor: "rgb(251, 254, 255)" }}>
         <Toolbar>
-          <Link to="/" style={{ textDecoration: "none", padding: 0 }}>
+          <Link
+            to="/"
+            style={{
+              textDecoration: "none",
+              paddingRight: "1rem",
+              display: "flex",
+              alignItems: "center",
+              gap: "0.2rem",
+            }}
+          >
+            <img src="/logo-main.png" alt="blogit-logo" height={"30px"} />
             <Typography
               variant="h1"
-              fontSize="2.1rem"
+              fontSize="1.9rem"
               fontWeight="bold"
               color="primary"
             >

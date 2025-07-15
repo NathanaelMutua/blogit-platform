@@ -40,14 +40,21 @@ function ProfilePage() {
           </Stack>
         </Stack>
 
-        <Typography>View Posts . Edit Profile . Update Security</Typography>
+        <Typography
+          variant="h2"
+          fontSize="1.2rem"
+          fontWeight="500"
+          color="primary"
+        >
+          View Posts . Edit Profile . Update Security
+        </Typography>
 
-        <Grid container spacing={3} padding="1rem 2rem">
-          <Grid size={{ lg: 6 }}>
+        <Grid container spacing={3} padding="1rem 2rem" justifyContent="center">
+          <Grid size={{ xs: 11, sm: 11, md: 9, lg: 6 }}>
             <ProfileDetails />
             <AccountSettings />
           </Grid>
-          <Grid size={{ lg: 6 }}>
+          <Grid size={{ xs: 11, sm: 11, md: 9, lg: 6 }}>
             <UserPostDetails />
           </Grid>
         </Grid>

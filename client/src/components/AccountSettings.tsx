@@ -56,7 +56,7 @@ function AccountSettings() {
           marginBlock: "2rem",
         }}
       >
-        <Typography variant="h3" fontWeight="bold">
+        <Typography variant="h3" fontSize="2rem" fontWeight="bold">
           Account Settings
         </Typography>
         <Typography variant="body2" color="text.secondary">

@@ -70,8 +70,8 @@ function UserPostDetails() {
 
   return (
     <Box>
-      <Card sx={{ padding: "3rem", marginBlock: "2rem" }}>
-        <Typography variant="h3" fontWeight="bold">
+      <Card sx={{ padding: "3rem", marginBlock: "2rem", minHeight: "40rem" }}>
+        <Typography variant="h3" fontSize="2rem" fontWeight="bold">
           Your Posts
         </Typography>
         <Typography variant="body2" color="text.secondary">

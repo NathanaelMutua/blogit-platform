@@ -63,7 +63,7 @@ function ProfileDetails() {
           marginBlock: "2rem",
         }}
       >
-        <Typography variant="h3" fontWeight="bold">
+        <Typography variant="h3" fontSize="2rem" fontWeight="bold">
           Profile Details
         </Typography>
         <Typography variant="body2" color="text.secondary">
