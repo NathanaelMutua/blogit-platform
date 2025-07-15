@@ -66,7 +66,6 @@ function SignInForm() {
       console.log(data);
       setPassword("");
       setUserIdentifier("");
-      console.log(user);
     },
   });
 

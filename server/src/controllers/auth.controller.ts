@@ -80,7 +80,7 @@ export const loginUser = async (req: Request, res: Response) => {
         sameSite: "lax",
         maxAge: 24 * 60 * 60 * 1000,
         path: "/",
-        secure: false, // for local development, set to true in production with HTTPS
+        secure: true,
       })
       .json(userDetails);
   } catch (e) {
@@ -101,7 +101,7 @@ export const logoutUser = async (req: Request, res: Response) => {
         httpOnly: true,
         sameSite: "lax",
         expires: new Date(0),
-        secure: false, // for local development, set to true in production with HTTPS
+        secure: true,
       })
       .json({ game_of_throws: "Logged out successfully✅" });
   } catch (e) {
