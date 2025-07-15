@@ -20,7 +20,7 @@ interface LoginDetails {
 }
 
 function SignInForm() {
-  const { setUser, user } = useUser();
+  const { setUser } = useUser();
   const navigate = useNavigate();
   const [usernameState, setUsernameState] = useState(false);
   const [emailState, setEmailState] = useState(true);
