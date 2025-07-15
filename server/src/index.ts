@@ -6,6 +6,8 @@ import userRouter from "./routes/user.route";
 import cookieParser from "cookie-parser";
 const app: Express = express();
 import dotenv from "dotenv";
+import { PrismaClient } from "@prisma/client";
+const myClient = new PrismaClient();
 
 dotenv.config();
 
@@ -15,10 +17,18 @@ app.use(
   cors({
     origin: ["http://localhost:5173"],
     methods: ["POST", "GET", "PUT", "PATCH", "DELETE"],
-    credentials: true,
+    credentials: true, // Allow cookies to be sent
   })
 );
 
+app.get("/test-db", async (req, res) => {
+  try {
+    const users = await myClient.user.findMany();
+    res.json(users);
+  } catch (e: any) {
+    res.status(500).json({ error: e.message });
+  }
+});
 app.get("/", (_req, res) => {
   res.send(`<h1>Blog Platform</h1>`);
 });
