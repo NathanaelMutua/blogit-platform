@@ -147,8 +147,9 @@ function BlogListCollection() {
                             variant="h5"
                             fontWeight="bold"
                             fontSize="0.8rem"
+                            textTransform="capitalize"
                           >
-                            {blog.user?.firstName} {blog.user?.firstName}
+                            {blog.user?.firstName} {blog.user?.lastName}
                           </Typography>
                           <Typography variant="h6" fontSize="0.6rem">
                             {blog.user?.username}
