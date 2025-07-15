@@ -1,4 +1,4 @@
-import { Avatar, Box, Stack, Typography } from "@mui/material";
+import { Avatar, Box, Grid, Stack, Typography } from "@mui/material";
 import useUser from "../store/userStore";
 import ProfileDetails from "../components/ProfileDetails";
 import UserPostDetails from "../components/UserPostDetails";
@@ -25,7 +25,7 @@ function ProfilePage() {
         >
           <Avatar
             src={`${user.user?.profileImage || "/avatar.jpg"}`}
-            sx={{ height: "10rem", width: "10rem" }}
+            sx={{ height: "10rem", width: "10rem", marginRight: "1rem" }}
           />
           <Stack>
             <Typography variant="h2" fontSize="1.8rem" fontWeight="bold">
@@ -42,9 +42,15 @@ function ProfilePage() {
 
         <Typography>View Posts . Edit Profile . Update Security</Typography>
 
-        <ProfileDetails />
-        <AccountSettings />
-        <UserPostDetails />
+        <Grid container spacing={3} padding="1rem 2rem">
+          <Grid size={{ lg: 6 }}>
+            <ProfileDetails />
+            <AccountSettings />
+          </Grid>
+          <Grid size={{ lg: 6 }}>
+            <UserPostDetails />
+          </Grid>
+        </Grid>
       </Box>
     </div>
   );

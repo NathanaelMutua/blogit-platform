@@ -52,7 +52,6 @@ function AccountSettings() {
     <Box>
       <Card
         sx={{
-          width: { xs: 1000, sm: 900, md: 900, lg: 900 },
           padding: "3rem",
           marginBlock: "2rem",
         }}

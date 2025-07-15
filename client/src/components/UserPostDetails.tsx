@@ -11,7 +11,7 @@ import { FaRegEye } from "react-icons/fa6";
 import { MdOutlineDelete } from "react-icons/md";
 import axiosInstance from "../api/axios.instance";
 import LoadingComponent from "./LoadingComponent";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import FormattedDate from "./FormattedDateComponent";
 import { useNavigate } from "react-router-dom";
 import useUserStore from "../store/userStore";
@@ -29,14 +29,33 @@ interface Blog {
 function UserPostDetails() {
   const navigate = useNavigate();
   const user = useUserStore();
+  const queryClient = useQueryClient();
+
   const { data, isLoading, isError } = useQuery({
     queryKey: ["get-user-blogs", user.user?.username],
     queryFn: async () => {
       const response = await axiosInstance.get("/api/user/blogs");
-      console.log(response);
       return response.data.userBlogs;
     },
   });
+
+  const deleteMutation = useMutation({
+    mutationFn: async (blogId: string) => {
+      await axiosInstance.delete(`/api/blogs/${blogId}`);
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["get-user-blogs", user.user?.username],
+      });
+    },
+  });
+
+  const handleDeletePost = (id: string) => {
+    if (window.confirm("Are you sure you want to delete this blog post?")) {
+      deleteMutation.mutate(id);
+    }
+  };
+
   if (isLoading) {
     return (
       <Box paddingTop={6}>
@@ -46,17 +65,12 @@ function UserPostDetails() {
   }
 
   if (isError) {
-    return;
+    return <Typography color="error">Failed to load your posts.</Typography>;
   }
+
   return (
     <Box>
-      <Card
-        sx={{
-          width: { xs: 1000, sm: 900, md: 900, lg: 900 },
-          padding: "3rem",
-          marginBlock: "2rem",
-        }}
-      >
+      <Card sx={{ padding: "3rem", marginBlock: "2rem" }}>
         <Typography variant="h3" fontWeight="bold">
           Your Posts
         </Typography>
@@ -99,7 +113,11 @@ function UserPostDetails() {
                     >
                       <FaEdit />
                     </IconButton>
-                    <IconButton color="warning">
+                    <IconButton
+                      color="warning"
+                      onClick={() => handleDeletePost(blog.id)}
+                      disabled={deleteMutation.isPending}
+                    >
                       <MdOutlineDelete />
                     </IconButton>
                   </Stack>
