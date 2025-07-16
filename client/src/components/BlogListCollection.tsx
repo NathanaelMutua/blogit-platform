@@ -139,14 +139,10 @@ function BlogListCollection() {
                             height: "2rem",
                           }}
                         >
-                          {blog.user ? (
-                            <>
-                              {blog.user?.firstName[0].toUpperCase()}
-                              {blog.user?.lastName[0].toUpperCase()}
-                            </>
-                          ) : (
-                            <Typography>XX</Typography>
-                          )}
+                          {blog.user?.firstName && blog.user?.lastName
+                            ? blog.user.firstName[0].toUpperCase() +
+                              blog.user.lastName[0].toUpperCase()
+                            : "XX"}
                         </Avatar>
                         <Stack spacing={0.1}>
                           <Typography
