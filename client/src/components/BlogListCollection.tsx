@@ -151,10 +151,16 @@ function BlogListCollection() {
                             fontSize="0.8rem"
                             textTransform="capitalize"
                           >
-                            {blog.user?.firstName} {blog.user?.lastName}
+                            {blog.user?.firstName &&
+                            blog.user.firstName.length > 0
+                              ? blog.user.firstName + " " + blog.user.lastName
+                              : ""}
                           </Typography>
                           <Typography variant="h6" fontSize="0.6rem">
-                            {blog.user?.username}
+                            {blog.user?.username &&
+                            blog.user.username.length > 0
+                              ? blog.user.username
+                              : "username"}
                           </Typography>
                         </Stack>
                       </Stack>
